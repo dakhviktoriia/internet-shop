@@ -1,0 +1,120 @@
+
+<div class="main">
+        <div class="admin-account">
+                <div class="image"></div>
+                <p class="admin-text"> {{ user?.displayName }}</p>
+                <p class="admin-text"> {{ user.email }}</p>
+                <p class="exit-admin"><a (click)="logout()" routerLink="/home">Log out</a></p>
+              </div>
+
+              
+              <div  *ngFor="let blog of blogs">
+                <div class="blog" *ngIf="user?.displayName === blog.author">
+
+                        <div class="blog-header">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="admin"></div><span class="text-admin">{{blog.author}}</span>
+                                </div>
+                                <span class="date">{{blog.date.seconds * 1000 | date:'MM-dd-yyyy'}}</span>
+                            </div>
+                    
+                            <p class="text-title">{{blog.title}}</p>
+                            <p>{{blog.comments.length}} comments</p>
+                            <img src="{{blog.img}}" alt="">
+                    
+                            <p class="text-text">{{blog.text}}</p>
+                    
+                    
+                            <div class="comments">
+                                <div *ngFor="let item of blog.comments">
+                                     <div class="wrap-user"><div class="user"></div><span class="text-user">{{item.author}}</span></div>   
+                                    <span style="font-style: italic;">{{item.comment}} </span> 
+                                    <span  class="text-delete" (click)="deleteComment(item, blog)"> delete</span>
+                    
+                                </div>
+                            </div>
+
+                            <button  type="button" class="button-delete" (click) = "deletePost(blog)">Delete post</button>
+
+                            <button  type="button" (click) = "editPost(blog)" data-toggle="modal" data-target="#post" class="button-delete" >Edit post</button>
+                </div>
+                <!--  -->
+                </div>
+
+                <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form *ngIf="user">
+                                <div class="row">
+                                    <div class="col-md-12 mb-2">
+                                        <label for="text">Title</label>
+                                        <input class="form-control" name="title" [(ngModel)]="title">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <label for="text">Text</label>
+
+                                            <textarea type="text" class="form-control" name="text"
+                                                [(ngModel)]="text"></textarea>
+                                        </div>
+                                    </div>
+
+                                   
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text" *ngIf="!checkEdit">
+                                            <label style="margin-right: 5px; margin-top: 5px;"  >Image:</label>
+                                            <input type="checkbox" (click)="showImage()" [checked] = "checkImage" />
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <br />
+                            
+                                <div class="form-group row" *ngIf="checkImage">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Image:</h5>
+                                        <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+                                        <br /><br />
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                                [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="uploadProgress | async"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <br />
+                                        <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                                            File uploaded: <a [href]="downloadSrc">{{ downloadSrc }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" (click)="saveImage()" class="button-log" *ngIf="checkImage" style="margin-bottom: 15px;">
+                                    Add Image
+                                </button>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="button-delete" type="button" data-dismiss="modal" #closeModal
+                                            (click)="saveEdit()">Save Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>

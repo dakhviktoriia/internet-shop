@@ -1,0 +1,123 @@
+<div class="box">
+
+    <div class="box-title">
+        <img src="{{forumBlog2.img}}" alt="" class="image-title">
+        <p class="title-title">{{forumBlog2.title}}</p>
+        <!-- <p class="title-text">{{forumBlog2.text}}</p> -->
+    </div>
+
+    <div class="box-button"><button type="button" data-toggle="modal" data-target="#post">Create New Post</button></div>
+
+
+    <div class="box-blogs">
+
+        <div *ngFor="let blog of blogs; let i=index">
+            <div *ngIf="blog.category === forumClick.title ? true : false" class="blog">
+                <div class="blog-header">
+                    <div style="display: flex; align-items: center;">
+                        <div class="admin"></div><span class="text-admin">{{blog.author}}</span>
+                    </div>
+
+                    <span class="date">{{blog.date.seconds * 1000 | date:'MM-dd-yyyy'}}</span>
+                </div>
+
+                <button *ngIf="blog.author === user?.displayName" type="button" class="button-delete" (click) = "deletePost(blog)">Delete post</button>
+
+                <p class="text-title"><a routerLink="/forum/blog3" (click)="showBlog(blog)">{{blog.title}}</a></p>
+                <p class="text-text">{{blog.text}}</p>
+
+                <img src="{{blog.img}}" alt="" class="image">
+
+                <div class="line"></div>
+
+                <p>{{blog.comments.length}} comments</p>
+            </div>
+
+
+
+            <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Create post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <p *ngIf="!user">Log in or Sign up to create posts!</p>
+                            <form *ngIf="user">
+                                <div class="row">
+                                    <div class="col-md-12 mb-2">
+                                        <label for="text">Title</label>
+                                        <input class="form-control" name="title" [(ngModel)]="title">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <label for="text">Text</label>
+
+                                            <textarea type="text" class="form-control" name="text"
+                                                [(ngModel)]="text"></textarea>
+                                        </div>
+                                    </div>
+
+                                   
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text" *ngIf="!checkEdit">
+                                            <label style="margin-right: 5px; margin-top: 5px;"  >Image:</label>
+                                            <input type="checkbox" (click)="showImage()" [checked] = "checkImage" />
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <br />
+                            
+                                <div class="form-group row" *ngIf="checkImage">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Image:</h5>
+                                        <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+                                        <br /><br />
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                                [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="uploadProgress | async"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <br />
+                                        <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                                            File uploaded: <a [href]="downloadSrc">{{ downloadSrc }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" (click)="saveImage()" class="button-log" *ngIf="checkImage" style="margin-bottom: 15px;">
+                                    Add Image
+                                </button>
+<small class="text-danger" *ngIf="checkVal">some value is empty</small> <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="button-log" type="button" data-dismiss="modal" #closeModal aria-label="Close"
+                                            (click)="createPost(forumBlog2.title)">Create Post</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>

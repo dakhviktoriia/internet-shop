@@ -1,0 +1,100 @@
+.main {
+  background-color: #e8e6e6;
+  width: 100%;
+  min-height: 500px;
+  padding: 20px;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+  background-image: url(/assets/icons/icon-admin.png);
+  background-size: 100px 100px;
+}
+.admin-account {
+  width: 100%;
+  height: 250px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.admin-text {
+  font-size: 25px;
+  color: black;
+  margin: 0;
+}
+a {
+  color: #ea5823;
+}
+
+.blog {
+  width: 60%;
+  border: 1px solid #c3c3c3;
+  min-height: 600px;
+  margin: 20px auto;
+  padding: 60px;
+}
+
+.admin {
+  width: 70px;
+  height: 70px;
+  background-image: url(/assets/icons/icon-admin.png);
+  background-size: 70px 70px;
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-admin {
+  margin-left: 10px;
+}
+
+.text-title {
+  margin-top: 16px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+img {
+  width: 100%;
+}
+
+.text-text {
+  margin-top: 20px;
+}
+
+.button-delete {
+  width: 100px;
+  height: 30px;
+  background-color: #ea5823;
+  color: white;
+  border: 0;
+  margin-top: 16px;
+  margin-right: 10px;
+}
+.button-delete:hover {
+  opacity: 0.8;
+}
+
+
+.modal-content {
+    background-color: #e7e7e7;
+    border-radius: 0;
+  }
+  .modal-title {
+    color: #ea5823;
+  }
+  .text-delete{
+    font-weight: 500;
+}
+
+.text-delete:hover{
+    text-decoration: underline;
+    cursor: pointer;
+
+}  

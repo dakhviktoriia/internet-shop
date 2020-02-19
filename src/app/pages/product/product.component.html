@@ -1,0 +1,110 @@
+<div class="nav">
+
+  <div class="add" *ngIf="addCart">Added to cart</div>
+  <div class="wrap-nav">
+    <p>
+      <a class="text-nav" href="" routerLink="/home">HOME/</a>
+      <a class="text-nav" href="" routerLink="/shop">Shop/</a>
+      <span>{{ product.name }}</span>
+    </p>
+
+    <p></p>
+  </div>
+</div>
+
+<div id="product-details">
+  <div class="wrap">
+    <div class="wrap-small-big">
+        <!-- product.imageUrl[0].img  -->
+      <img class="image" src="{{imageChange}}" alt="" />
+      <div class="wrap-small-img">
+        <img *ngFor="let img of product.imageUrl" src="{{ img.img }}" alt="" (click) = "changeImage(img.img)" />
+
+        <p class="title-info  text-descrsption">{{product.descrsption}}</p>
+      </div>
+    </div>
+
+
+
+    <div class="info">
+      <p class="product-name">
+        {{ product.name }}
+      </p>
+
+      <p class="product-price">
+        {{ product.price | currency: "USD" }}
+      </p>
+
+      <p class="label">Size</p>
+
+      <div class="select">
+        <div class="check-size" *ngIf="checkSize">Select size</div>
+        <select name="" id="" placeholder="select" name="size" [(ngModel)]="size" (change) = "Size()">
+          <option value="Select" selected disabled>Select</option>
+          <option *ngFor="let size of product.size" value="{{ size.size }}" selected>
+            <span>{{size.size}}</span></option>
+        </select>
+      </div>
+  
+          <p class="label">Color: {{colorName}}</p>
+          <div class="wrap-color">
+              <div class="check-size" *ngIf="checkColor">Select color</div>
+
+            <ul>
+              <li *ngFor="let color of product.color" ><span (click) = "chooseColor(color, product.imageUrl)" [ngStyle]="{backgroundColor: color.color}"></span></li>
+            </ul>
+  
+   
+   
+      </div>
+
+      <p class="label">Quantity</p>
+      <input type="number" name="quantity" [(ngModel)]="quantity" id="" value="1" />
+
+      <button class="button"  (click)="addToCart(product)">
+          ADD TO CART
+        </button>
+
+      <div class="plus-text" (click)="showMorePr()">
+        <p class="title-info">Product Info</p>
+        <div *ngIf="!showPrIndo" class="plus"></div>
+        <div *ngIf="showPrIndo" class="minus"></div>
+      </div>
+
+      <p *ngIf="showPrIndo">
+        I'm a product detail. I'm a great place to add more information about
+        your product such as sizing, material, care and cleaning instructions.
+        This is also a great space to write what makes this product special and
+        how your customers can benefit from this item.
+      </p>
+      <div class="line"></div>
+
+      <div class="plus-text" (click)="showMoreRe()">
+        <p class="title-info">Return and Refund policy</p>
+        <div *ngIf="!showRe" class="plus"></div>
+        <div *ngIf="showRe" class="minus"></div>
+      </div>
+      <p *ngIf="showRe">
+        I’m a Return and Refund policy. I’m a great place to let your customers
+        know what to do in case they are dissatisfied with their purchase.
+        Having a straightforward refund or exchange policy is a great way to
+        build trust and reassure your customers that they can buy with
+        confidence.
+      </p>
+      <div class="line"></div>
+
+      <div class="plus-text" (click)="showMoreShi()">
+        <p class="title-info">Shipping Info</p>
+        <div *ngIf="!showShi" class="plus"></div>
+        <div *ngIf="showShi" class="minus"></div>
+      </div>
+      <p *ngIf="showShi">
+        I'm a shipping policy. I'm a great place to add more information about
+        your shipping methods, packaging and cost. Providing straightforward
+        information about your shipping policy is a great way to build trust and
+        reassure your customers that they can buy from you with confidence.
+      </p>
+      <div class="line"></div>
+    </div>
+  </div>
+</div>

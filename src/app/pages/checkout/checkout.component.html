@@ -1,0 +1,232 @@
+<div  class="main">
+  <p *ngIf="!final" class="text">Check out</p>
+
+  <div *ngIf="!final" class="wrap">
+    <div class="reg">
+
+
+
+
+
+      <div *ngIf="!user">
+        <ul>
+          <li [className]="condition1 ? 'inactive' : 'active'" (click)="showCondition1()">
+            I am a new customer
+          </li>
+          <li [className]="condition2 ? 'inactive' : 'active'" (click)="showCondition2()">
+            I am a regular customer
+          </li>
+        </ul>
+        <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)" *ngIf="condition2">
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label for="firstName">First name</label>
+              <input ngModel #firstname="ngModel" name="firstName" type="text" class="form-control" id="firstName" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label for="lastName">Last name</label>
+              <input ngModel #lastname="ngModel" name="lastName" type="text" class="form-control" id="lastName"
+                value="" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <label for="email">Email</label>
+              <input ngModel #email="ngModel" name="email" type="email" class="form-control" />
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <label for="password">Password</label>
+                <input ngModel #password="ngModel" name="password" type="password" class="form-control" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <button class="button-log" type="submit">Sign up</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" *ngIf="condition1">
+          <div class="row" *ngIf="authError">
+            <div class="col-12 alert alert-danger">
+              {{ authError?.message }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <label for="email">Email</label>
+              <input ngModel #email="ngModel" name="email" type="email" class="form-control" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <label for="password">Password</label>
+              <input ngModel #password="ngModel" name="password" type="password" class="form-control" />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-12">
+              <button class="button-log" type="submit">Log in</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="user" >
+          <p class="title" (click)="previousStep()" [className]="checkSecondStep ? 'titleactive' : 'title'">1. Contacts</p>
+
+        <form *ngIf="!checkSecondStep">
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label for="name">Name</label>
+              <input name="name" type="text" class="form-control" id="name" value="{{user.displayName}}" disabled/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <label for="email">Email</label>
+              <input name="email" type="email" class="form-control" value="{{user.email}}" disabled/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <label for="mobNumber">Phone number(example: +389802212222)</label>
+              <input name="mobNumber" type="number" class="form-control" [(ngModel)]="mobNumber" />
+              <small class="text-danger" *ngIf="checkNum">wrong number</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <label for="town">Town</label>
+              <input name="town" type="text" class="form-control" [(ngModel)]="town" />
+            </div>
+          </div>
+
+
+          <div>
+            <small class="text-danger" *ngIf="checkVal">some value is empty</small>
+
+
+            <div class="row">
+              <div class="col-md-12">
+                <button *ngIf="!checkSecondStep" class="button-log" type="button" (click)="nextStep()">Next
+                  step</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <p class="title" [className]="!checkSecondStep ? 'titleactive' : 'title'" *ngIf="user">2. Choosing shipping and payment options </p>
+      <div *ngIf="checkSecondStep">
+        
+        <form>
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <label for="address">Address (example: Holubovucha, 35, 1)</label>
+              <input name="address" type="text" class="form-control" [(ngModel)]="address" id="address"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <label>Payment</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio"  checked name="payment" id="payment" value="Payment upon receipt of the order"  [(ngModel)]="payment">
+                <label class="form-check-label" for="payment">
+                  Payment upon receipt of the order
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <label>Shipping</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="shipping" [(ngModel)]="shipping" id="shipping1" value="Nova poshta" checked>
+                <label class="form-check-label" for="shipping1">
+                  Nova poshta
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="shipping"  [(ngModel)]="shipping"  id="shipping2" value="Ukrposhta">
+                <label class="form-check-label" for="shipping2">
+                  Ukrposhta
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="shipping3"  [(ngModel)]="shipping"  id="shipping3" value="Meest express">
+                <label class="form-check-label" for="shipping3">
+                  Meest express
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <small class="text-danger" *ngIf="checkval">some value is empty</small>
+
+          <div>
+            <div class="row">
+              <div class="col-md-12">
+                <button class="button-log" type="button" (click)="completeOrder()">
+                  Complete order</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+
+    </div>
+
+    <div class="cart">
+      <div class="products">
+        <div class="product" *ngFor="let item of cartItems" style="float: left;">
+          <div>
+            <img src="{{ item.image }}" alt="" style="float: left;" width="90px" />
+            <p>{{ item.name }}</p>
+            <p>Color: {{ item.color }}</p>
+            <span>Size: {{ item.size }}</span>
+
+            <p>
+              <span>{{item.quantity}} piece </span>
+              <span class="price">{{ item.price*item.quantity | currency: "USD" }}</span>
+            </p>
+          </div>
+
+          <div class="line"></div>
+        </div>
+
+        <p class="edit">Total: {{total | currency: "USD"}} </p>
+        <p class="edit"><a routerLink="/cart"> Edit Order</a></p>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="final" class="final">
+    <p>Thank you for your purchase</p>
+    <p>Check your email</p>
+    <p> <a routerLink = "/home">Home Page</a></p>
+  </div>
+</div>
+

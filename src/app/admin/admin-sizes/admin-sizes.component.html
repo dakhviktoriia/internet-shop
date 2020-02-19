@@ -1,0 +1,42 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <div class="form-group">
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="size" [(ngModel)]="size"
+      name="size" />
+      <small class="text-danger" *ngIf="check">value is empty</small>
+
+  </div>
+
+  <div class="form-group">
+    <input type="hidden" class="form-control" id="exampleFormControlInput1" placeholder="checkSize"
+      [(ngModel)]="checkSize" name="checkSize" value="false" />
+  </div>
+
+  <button type="submit" class="btn btn-dark" *ngIf = "!checkEdit">Add</button>
+  <button type="button" class="btn btn-dark" *ngIf = "checkEdit" (click)="saveEdit()">Save Edit</button>
+
+</form>
+
+<table class="table mt-3">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Size</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of sizes; let i = index">
+      <th scope="col">{{ i + 1 }}</th>
+      <th scope="col">{{ item.size }}</th>
+      <th scope="col">
+        <button type="button" class="btn btn-dark" (click) = "onEdit(item)">Edit</button>
+      </th>
+      <th scope="col">
+        <button type="button" class="btn btn-dark" (click)="onDelete(item.id)">
+          Delete
+        </button>
+      </th>
+    </tr>
+  </tbody>
+</table>

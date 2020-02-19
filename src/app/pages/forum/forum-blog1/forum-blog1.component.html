@@ -1,0 +1,40 @@
+  <div class="blog1">
+  
+    <div class="box-text">
+      <p class="text-title">FITNESS AND HEALTH FORUM</p>
+      <p class="text-main">
+        Welcome to our forum - your source for all things fitness. Explore the
+        conversation and connect with other enthusiasts.
+      </p>
+    </div>
+  
+
+  <div class="wrap-blogs">
+<!-- 
+    <div class="blog"></div>
+    <div class="blog"></div>
+    <div class="blog"></div>
+    <div class="blog"></div> -->
+    <div class="blog" *ngFor="let forum of forums" >
+      <div class="img-blog">
+        <img src="{{forum.img}}" alt="" routerLink = "/forum/blog2" width="460px" height="250px" (click)="showForum(forum)">
+      </div>
+      <input type="hidden" name="idForum" [(ngModel)]="idForum">
+
+      <div class="info-blog">
+        <div class="wrap-text">
+          <p class="text-blog1"> <a (click)="showForum(forum)" routerLink = "/forum/blog2"> {{forum.title}}</a></p>
+          
+        </div>
+  
+        <p>{{forum.text}}</p>
+      </div>
+    </div>
+    
+  
+
+  </div>
+  </div>
+
+ 
+  

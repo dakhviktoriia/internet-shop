@@ -1,0 +1,14 @@
+.color{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 5px ;
+}
+
+.input-group-text{
+    background-color: #e2e2e2;
+    color: #343a40;
+
+}
+

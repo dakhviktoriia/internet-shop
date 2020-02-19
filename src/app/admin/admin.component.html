@@ -1,0 +1,51 @@
+<div class="row " class="admin">
+  <div class="mt-3 mb-5 container-fluid">
+    <div class="admin-account">
+      <div class="image"></div>
+      <p class="admin-text">Admin</p>
+      <!-- <p class="password-admin"><a href="#">Change password</a></p> -->
+      <p class="exit-admin"><a routerLink="/home">Exit</a></p>
+    </div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="products" routerLinkActive="active">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="category" routerLinkActive="active">Category</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="sizes" routerLinkActive="active">Sizes</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="colors" routerLinkActive="active">Colors</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="forum" routerLinkActive="active">Forum</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="blog" routerLinkActive="active">Blogs</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="orders" routerLinkActive="active">Orders</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="subscribe" routerLinkActive="active">Subscribers</a>
+      </li>
+
+      <li class="nav-item">
+          <a class="nav-link" routerLink="users" routerLinkActive="active">Users</a>
+        </li>
+    </ul> 
+  </div>
+  <div class="container-fluid">
+    <div class="tab-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

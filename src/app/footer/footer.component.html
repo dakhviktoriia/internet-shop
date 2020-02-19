@@ -1,0 +1,52 @@
+<div id="footer">
+  <div class="box-wrapper">
+    <div class="footer-box1">
+      <p class="text footer-title">IN.EX</p>
+
+      <menu>
+          <ul class="footer-menu-inex">
+                <li> <a routerLink = "home">Home</a></li>
+                <li> <a routerLink = "shop">Shop</a></li>
+                <li> <a routerLink = "about">About</a></li>
+                <li> <a routerLink = "forum">Forum</a></li>
+                <li> <a routerLink = "contact">Contact</a></li>
+            
+          </ul>
+      </menu>
+    </div>
+    <div class="footer-box2">
+      <p class="text footer-title">EXPERIENCE</p>
+
+      <menu>
+            <ul class="footer-menu-inex">
+                  <li> <a routerLink = "shipping">Shipping & Returns</a></li>
+                  <li> <a routerLink = "policy">Store Policy</a></li>
+                  <li> <a routerLink = "policy" (click) = scroll()>Payment Methods</a></li>
+              
+            </ul>
+        </menu>
+    </div>
+    <div class="footer-box3">
+      <p class="text footer-title">FOLLOW US</p>
+      <menu>
+            <ul class="footer-menu-inex">
+                  <li> <a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                  <li> <a href="https://twitter.com/?lang=uk/" target="_blank">Twitter</a></li>
+                  <li> <a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                  <li> <a href="https://www.pinterest.com/" target="_blank">Pinterest</a></li>
+               
+              
+            </ul>
+        </menu>
+    </div>
+    <div class="footer-box4">
+      <p class="text footer-title">JOIN OUR NEWSLETTER</p>
+      <input type="email" name="email" id="" placeholder="Enter your email here" [(ngModel)]="email" [ngStyle]="{borderBottom: colorBorder}" (input) = "changeInput()">
+      <button type="button" (click) = "addEmail()">Subscribe Now</button>
+    </div>
+  </div>
+</div>
+
+<div class="rights-footer">
+    <p>© 2019 All rights reversed</p>
+</div>

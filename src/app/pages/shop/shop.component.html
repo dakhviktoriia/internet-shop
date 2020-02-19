@@ -1,0 +1,125 @@
+<div id="shop-main1">
+  <div class="box1-main1">
+    <div class="shop">SHOP</div>
+  </div>
+  <div class="box2-main1"></div>
+</div>
+
+
+<div class="shop-main2">
+  <div class="filter-by">
+    <p class="filter-text">Filter by</p>
+
+    <div class="line"></div>
+
+    <div class="plus-text" (click)="showCollection()">
+      <p class="filter-text-filter">Collection</p>
+      <div *ngIf="!checkColections" class="plus"></div>
+      <div *ngIf="checkColections" class="minus"></div>
+    </div>
+
+
+    <div class="categoty-text" *ngIf="checkColections">
+      <span style="font-weight: 500;"> <a (click)="allCat()">All</a> </span><br />
+      <p  *ngFor="let category of categories" (click) = "filterCategory(category)"> <a class="cat"  [className]="category.active ? 'active' : 'unactive'">{{category.category}}</a> </p>
+    </div>
+
+
+
+    <div class="line"></div>
+    <div class="plus-text" (click)="showPrice()">
+      <p class="filter-text-filter">Price</p>
+      <div *ngIf="!checkPrice" class="plus"></div>
+      <div *ngIf="checkPrice" class="minus"></div>
+
+      <!-- <p>Min value: <input type="number" [(ngModel)]="minValue"></p>
+      <p>Max value: <input type="number" [(ngModel)]="maxValue"></p> -->
+      
+    </div>
+
+    <div *ngIf="checkPrice">
+      <ng5-slider (click)="filter()" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+    </div>
+    
+    <div class="line"></div>
+    <div class="plus-text" (click)="showColor()">
+      <p class="filter-text-filter">Color  <span> {{ colorName}}</span></p>
+      <div *ngIf="!checkColor" class="plus"></div>
+      <div *ngIf="checkColor" class="minus"></div>
+    </div>
+
+
+
+    <div class="wrap-colors" *ngIf="checkColor">
+      <div class="color" *ngFor="let item of colors; let i = index" [ngStyle]="{ backgroundColor: item.color }" (click)="filterColor(item)" (mouseover) = "showNameColor(item.name)" (mouseleave) = "hideColor()" [className]="item.active ? 'activeColor' : 'color'"></div>
+    </div>
+
+    <div class="line"></div>
+
+    <p class="filter-text-filter"><a (click)="showClear()">Clear all filtres</a></p>
+
+    <!-- <div class="plus-text" (click)="showSize()">
+      <p class="filter-text-filter">Size</p>
+      <div *ngIf="!checkSize" class="plus"></div>
+      <div *ngIf="checkSize" class="minus"></div>
+    </div> -->
+
+
+
+    <!-- <div *ngIf="checkSize">
+      <div class="checkbox-sizes" *ngFor="let item of sizes">
+        <input type="checkbox" class="checkbox-input-size" id="checkboxS" name="size" />
+        <label for="checkboxS" class="checkbox-label-size">{{ item.size }}</label>
+      </div>
+    </div> -->
+
+  </div>
+
+
+  <div class="wrap" style="display: flex;">
+    <div class="sort">
+        <select name="sort" [(ngModel)]="sort" id="" (change) = "sortSelect()">
+          <option value="Sort by" selected>Sort by</option>
+          <option value="pricelow" >Price (low to high)</option>
+          <option value="pricehigh" >Price (high to low)</option>
+          <option value="az" >Name A-Z</option>
+          <option value="za" >Name Z-A</option>
+        </select>
+    </div>
+  
+    <div class="wrap-products">
+      <div class="card-product" *ngFor="let item of products | pipeShop : categoryFilter | colors : sortColor | price: minValue: maxValue; let i = index" (click)="showQuickDetails(item)">
+        <div>
+          <div class="status status-bestseller" style="margin-bottom: 10px;" *ngIf="item.bestseller">
+            Best Seller
+          </div>
+  
+          <div class="status status-newarrival" *ngIf="item.newarrival">
+            New Arrival
+          </div>
+          <img src="{{ item.imageUrl[0].img }}" alt="" class="product-image"  routerLink="/product" (click)="productDetail(item)"/>
+        </div>
+  
+        <p class="product-name" ><a routerLink="/product" (click)="productDetail(item)">{{ item.name }} </a></p>
+        <p class="product-price">{{ item.price | currency: "USD" }}</p>
+  
+      </div>
+    </div>
+
+    <div class="up" (click)="btnSmothScroll()">
+      <div class="triangle-up"></div>
+    </div>
+
+
+<!-- 
+    <ngb-pagination class="pagination" [collectionSize]="sizeCollection" pageSize = "12" [(page)]="page" aria-label="Default pagination" (pageChange) = "onPageChanged($event)"></ngb-pagination>
+
+ -->
+
+
+  </div>
+
+  
+
+
+</div>

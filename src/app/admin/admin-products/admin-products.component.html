@@ -1,0 +1,163 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+
+
+  <div class="form-group">
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name" [(ngModel)]="name"
+      name="name" />
+  </div>
+
+  <div class="form-group">
+    <select class="form-control" [(ngModel)]="category" name="category">
+      <option value="category..." disabled selected>category...</option>
+      <option [value]="category.category" *ngFor="let category of categories; let i=index">
+        {{category.category}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="price" [(ngModel)]="price"
+      name="price" />
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend" *ngFor="let color of colors">
+      <div class="input-group-text">
+        <label style="margin-right: 5px; margin-top: 5px;">{{ color.name }} </label>
+        <input  type="checkbox" (click)="addColor(color)" value="{{color.color}}" [checked]="checkBoxColor" data-toggle="modal" data-target="#modalImage" />
+      </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="checkModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Image of {{colorModal}}:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <div class="card-body">
+  
+              <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+              <br /><br />
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                  [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="uploadProgress | async" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+              <br />
+              <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                File uploaded: <a [href]="downloadSrc">{{ downloadSrc }}</a>
+              </div>
+            </div>
+          
+          </div>      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal" (click) = "addImage(color)">Save image</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend" *ngFor="let size of sizes">
+      <div class="input-group-text">
+        <span style="margin-right: 5px;">{{ size.size }}</span>
+        <input type="checkbox" (click)="addSize(size)" value="{{size.size }}" [checked]="checkBoxSize" />
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <span style="margin-right: 5px;">New Arrivals</span>
+        <input type="checkbox" aria-label="Checkbox for following text input" (click)="addArrival()"
+          [(ngModel)]="newarrivals" [checked] = "checkNew" name="newarrivals" />
+      </div>
+    </div>
+
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <span style="margin-right: 5px;">Best Seller</span>
+        <input type="checkbox" aria-label="Checkbox for following text input" (click)="addBestSeller()"
+          [(ngModel)]="bestsellers" name="bestsellers" [checked] = "checkBest" />
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <textarea class="form-control" rows="3" placeholder="descrsption" [(ngModel)]="descrsption"
+      name="descrsption"></textarea>
+  </div>
+
+  <div class="form-group">
+    <input type="hidden" class="form-control" [(ngModel)]="imageUrl" name="imageUrl" />
+  </div>
+  <small class="text-danger" *ngIf="checkVal">some value is empty</small> <br> <br>
+  <button type="submit" class="btn btn-dark" *ngIf="!checkSave">
+    Add Product
+  </button>
+
+  <button type="button" class="btn btn-dark" *ngIf="checkSave" (click)="saveEdit()">
+      Save Edit
+    </button>
+
+</form>
+
+
+
+
+
+
+
+
+<table class="table mt-3">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Color</th>
+      <th scope="col">Size</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of products; let i = index">
+      <th scope="col">{{ i + 1 }}</th>
+      <th scope="col">{{ item.category}}</th>
+      <th scope="col">{{ item.name }}</th>
+      <th scope="col">{{ item.price }}</th>
+      <th scope="col">
+        <div *ngFor="let color of item.color; let i=index" class="color" [ngStyle]="{'backgroundColor': color.color}">
+        </div>
+      </th>
+      <th scope="col">
+        <span *ngFor="let size of item.size; let i=index">{{size.size}} </span>
+      </th>
+      <th scope="col">{{ item.descrsption }}</th>
+      <th scope="col">
+        <img  *ngFor="let image of item.imageUrl" src="{{image.img}}" alt="" style="width: 70px;">
+
+      </th>
+      <th scope="col">
+        <button type="button" class="btn btn-dark" (click)="onEdit(item)" >Edit</button>
+      </th>
+      <th scope="col">
+        <button type="button" class="btn btn-dark" (click)="onDelete(item.id, item.imageUrl)">
+          Delete
+        </button>
+      </th>
+    </tr>
+  </tbody>
+</table>

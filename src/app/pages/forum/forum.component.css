@@ -1,0 +1,154 @@
+#forum-main1{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+}
+
+.box1-main1{
+    width: 40%;
+    height: 80vh;
+    background-color: #ea5823;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.box2-main1{
+    width: 60%;
+    height: 80vh;
+    background-image: url(/assets/images/240376-P322FG-450.jpg);
+    background-size: 100% 100%;
+
+}
+
+.forum{
+    width: 355px;
+    height: 195px;
+    border: 4px solid white;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#forum-main2{
+    width: 100%;
+    min-height: 100px;
+    background-color: #e8e6e6 ;
+    padding-top: 45px;
+}
+
+.input-text{
+    width: 70%;
+    display: flex;
+    margin: auto;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.input-text-text a{
+    color: #858484;
+    font-size: 12px;
+    
+    text-decoration: none;
+}
+.input-text-text{
+    margin: 0;
+
+}
+
+.input-text input{
+    width: 200px;
+    height: 30px;
+    background-color:#e8e6e6 ;
+    border: 0;
+    border-bottom: 1px solid #838282;
+    outline: none;
+}
+
+.text-title{
+    color: #838282;
+    font-size: 50px;
+    color: #1f1f1f;
+    font-weight: 600;
+}
+
+.text-main{
+    color: #3a3a3a;
+    width: 700px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 23px;
+
+   
+}
+
+.box-text{
+    width: 60%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.wrap-blogs{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 930px;
+    min-height: 950px;
+    margin: 0 auto;
+}
+
+.blog{
+    width: 465px;
+    height: 420px;
+    border: 1px solid #838282;
+}
+
+.img-blog{
+    width: 460px;
+    height: 250px;
+    background-color: black;
+    overflow: hidden;
+
+}
+
+.wrap-text{
+    width: 400px;
+    height: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+}
+ 
+.text-blog1 a{
+    font-weight: 600;
+    color: #1f1f1f;
+}
+
+.text-blog1 :hover{
+    font-weight: 600;
+    color: #ea5823;
+    text-decoration: none;
+}
+
+.text-blog2 a{
+    color: #1f1f1f;  
+}
+
+
+
+.info-blog{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.arrow{
+    width: 15px;
+    height: 15px;
+    background-image: url(/assets/icons/forwardarrow_haciaadelante_4836.png);
+    background-size: 15px 15px;
+}

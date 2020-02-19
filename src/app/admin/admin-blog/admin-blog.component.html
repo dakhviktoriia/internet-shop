@@ -1,0 +1,123 @@
+<form>
+    <div class="form-group">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="title" [(ngModel)]="title"
+            name="title" />
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" [(ngModel)]="category" name="category">
+            <option value="category..." disabled selected>category...</option>
+            <option [value]="forum.title" *ngFor="let forum of forums; let i = index">
+                {{ forum.title }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <textarea type="number" class="form-control" id="exampleFormControlInput1" placeholder="text" [(ngModel)]="text"
+            name="text"></textarea>
+    </div>
+
+    <div class="form-group">
+        <input type="text" disabled class="form-control" id="exampleFormControlInput1" [(ngModel)]="author"
+            name="author" />
+    </div>
+
+    <!-- <div class="form-group">
+        <input type="hidden" class="form-control" id="exampleFormControlInput1" placeholder="admin" [(ngModel)]="author"
+            name="author" />
+    </div> -->
+
+    <div *ngIf="checkEdit">
+        <p>Comments:</p>
+        <p *ngFor="let item of commentsEdit" >
+            <span> <b>{{ item.author }}:</b>  </span> <span>{{ item.comment }}</span>
+            <button class="btn btn-dark" (click)="deleteComment(item)" type="button">delete</button>
+        </p>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <label style="margin-right: 5px; margin-top: 5px;"  >Image:</label>
+                <input type="checkbox" (click)="showImage()" [checked] = "checkImage" />
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group row" *ngIf="checkImage">
+        <div class="card-body">
+            <h5 class="card-title">Image:</h5>
+            <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+            <br /><br />
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                    [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="uploadProgress | async"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br />
+            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                File uploaded: <a [href]="downloadSrc">{{ downloadSrc }}</a>
+            </div>
+        </div>
+    </div>
+    <button type="button" (click)="saveImage()" class="btn btn-dark" *ngIf="checkImage" style="margin-bottom: 15px;">
+        Add Image
+    </button>
+    <br />
+    <small class="text-danger" *ngIf="checkVal">some value is empty</small> <br> <br>
+
+    <button type="button" class="btn btn-dark" *ngIf="!checkEdit" (click)="onSubmit()">
+        Add Blog
+    </button>
+
+    <button type="submit" class="btn btn-dark" *ngIf="checkEdit" (click)="saveEdit()"> 
+        Save Edit
+    </button>
+</form>
+
+<table class="table mt-3">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Cetegory</th>
+            <th scope="col">Text</th>
+            <th scope="col">Author</th>
+            <th scope="col">Date</th>
+            <th scope="col">Image</th>
+            <th scope="col">Comments</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let blog of blogs; let i = index">
+            <th scope="col">{{ i + 1 }}</th>
+            <th scope="col">{{ blog.title }}</th>
+            <th scope="col">{{ blog.category }}</th>
+            <th scope="col">{{ blog.text }}</th>
+            <th scope="col">{{ blog.author }}</th>
+            <th scope="col">{{ blog.date.seconds * 1000 | date: "MM-dd-yyyy" }}</th>
+            <th scope="col"><img src="{{ blog.img }}" alt="" width="100px" /></th>
+            <th scope="col">
+                Comments:
+                <p *ngFor="let item of blog.comments; let i = index">
+                    {{ i + 1 }}. {{ item.comment }}
+                    <span style="font-weight: 300;">{{ item.author }}</span>
+                </p>
+            </th>
+            <th scope="col">
+                <button type="button" class="btn btn-dark" (click)="onEdit(blog)">
+                    Edit
+                </button>
+            </th>
+            <th scope="col">
+                <button type="button" class="btn btn-dark" (click)="onDelete(blog.id, blog.idImg)">
+                    Delete
+                </button>
+            </th>
+        </tr>
+    </tbody>
+</table>

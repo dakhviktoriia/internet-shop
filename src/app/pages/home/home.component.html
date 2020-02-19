@@ -1,0 +1,105 @@
+<div id="home-main1">
+  <div class="main1-box1">
+    <div class="box-for-text-main1-box1">
+      <p class="text text-main1-box1">
+        IT ' S TIME <br />
+        TO STEP UP <br />
+        YOUR GAME <br />
+      </p>
+      <p class="text text-main1-box1-shop-now">
+        <a routerLink="/shop">SHOP NOW</a>
+      </p>
+    </div>
+  </div>
+  <div class="main1-box2">
+    <div class="main1-box2-img"></div>
+  </div>
+</div>
+
+<div id="home-main2">
+  <div class="wrapper-for-images">
+    <div class="home-main2-arrivals">
+      <div class="goTo goToarrivals">
+        <p class="text text-goTo text-goToarrivals">
+          <a href="">
+            SHOP NEW <br />
+            ARRIVALS
+          </a>
+        </p>
+        <div class="box-arrow"><button class="arrrow" (click) = "scroll()"></button></div>
+      </div>
+    </div>
+    <div class="home-main2-bestsellers">
+      <div class="goTo goTobestsellers">
+        <p class="text text-goTo text-goTobestsellers">
+          <a routerLink="/shop">
+            SHOP NEW <br />
+            BESTSELLERS
+          </a>
+        </p>
+
+        <div class="box-arrow arrow-goTobestsellers"><button class="arrrow" routerLink="/shop"></button></div>
+      </div>
+    </div>
+    <div class="home-main2-community">
+      <div class="goTo goTocommunity">
+        <p class="text  text-goTo text-goTocommunity">
+          <a routerLink="/forum">
+            JOIN OUR<br />
+            COMMUNITY
+          </a>
+        </p>
+        <div class="box-arrow"><button class="arrrow" routerLink="/forum"></button></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="wrap-text-main2">
+    <span class="text-main2">WORKOUT</span><br />
+    <span class="text-main2">ANYTIME,</span>
+  </p>
+</div>
+
+<div id="home-main3">
+  <div class="box-main3">
+    <div class="box-main3-img">
+      <div class="border-box-main3"></div>
+    </div>
+  </div>
+
+  <span class="text text-main3">ANYWHERE</span>
+
+  <p class="text text-main3-p">
+      I'm a paragraph. Click here to add your own text 
+      and edit me. It’s easy. Just click “Edit Text” or 
+      double click me to add your own content and make 
+      changes to the font.
+  </p>
+
+  <button class="button-main3"  routerLink = "/about">Read More</button>
+
+  
+</div>
+
+<div class="new-arrivals">
+  <p class="new-arrival-text">NEW ARRIVALS</p>
+  <div class="wrap-new-arrival">
+    <div class="card-product" *ngFor="let product of productsNew">
+      <div>
+
+        <div class="status status-newarrival" (click) = "gerNewArrival()">
+          New Arrival 
+        </div>
+        <img src="{{product.imageUrl[0].img}}" routerLink="/product" alt="" class="product-image" (click)="productDetail(product)"/>
+      </div>
+
+      <p class="product-name" ><a routerLink="/product" (click)="productDetail(product)">{{product.name}}</a></p>
+      <p class="product-price">{{product.price | currency: "USD"}}</p>
+
+    </div>
+  </div>
+
+  <button type="button" class="button-shopall"  routerLink = "/shop">Shop All</button>
+  
+
+</div>

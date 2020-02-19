@@ -1,0 +1,131 @@
+<header class="header">
+
+
+  <div class="menu">
+    <span class="text-header"> <a routerLink="home">IN.EX</a> </span>
+    <menu>
+      <ul class="nav">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"> <a [routerLink]="['/home']">HOME</a></li>
+        <li routerLinkActive="active"> <a [routerLink]="['/shop']">SHOP</a></li>
+        <li routerLinkActive="active"> <a [routerLink]="['/about']">ABOUT</a></li>
+        <li routerLinkActive="active"> <a [routerLink]="['/forum']">FORUM</a></li>
+        <li routerLinkActive="active"> <a [routerLink]="['/contact']">CONTACT</a></li>
+        <!-- <li> <a routerLink = "admin" routerLinkActive="active">ADMIN</a></li> -->
+      </ul>
+    </menu>
+
+    <div class="text-reg">
+      <p class="text-reg" *ngIf="user"><a routerLink="/user">Hi,{{ user?.displayName }}</a></p>
+      <a data-toggle="modal" data-target="#signUp" *ngIf="!user">Sign up</a>
+      <a *ngIf="user" (click)="logout()">Logout</a>
+      <a data-toggle="modal" data-target="#logIn" *ngIf="!user">Login</a>
+    </div>
+
+  </div>
+
+
+  <div class="basket">
+    <button routerLink="cart" class="basket-icon"></button>
+    <span class="text-cart">{{qua}}</span>
+
+  </div>
+  <!-- <a routerLink = "cart">Cart</a> -->
+
+
+</header>
+
+
+<div class="modal fade" id="logIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Log in</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+          <div class="row" *ngIf="authError">
+            <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <label for="email">Email</label>
+              <input ngModel #email="ngModel" name="email" type="email" class="form-control">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <label for="password">Password</label>
+              <input ngModel #password="ngModel" name="password" type="password" class="form-control">
+            </div>
+          </div>
+
+          <div class="row mt-2">
+
+
+            <div class="col-12">
+              <button class="button-log" type="submit" #closeModal (click)="closeMod()">Log in</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)">
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label for="firstName">First name</label>
+              <input ngModel #firstname="ngModel" name="firstName" type="text" class="form-control" id="firstName">
+            </div>
+            <div class="col-md-6 mb-2">
+              <label for="lastName">Last name</label>
+              <input ngModel #lastname="ngModel" name="lastName" type="text" class="form-control" id="lastName"
+                value="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <label for="email">Email</label>
+              <input ngModel #email="ngModel" name="email" type="email" class="form-control">
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <label for="password">Password</label>
+                <input ngModel #password="ngModel" name="password" type="password" class="form-control">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <button class="button-log" type="submit">Sign up</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

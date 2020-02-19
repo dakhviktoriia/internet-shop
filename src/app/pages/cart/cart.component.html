@@ -1,0 +1,83 @@
+<div id="cart" *ngIf="!checkEmpty">
+
+    <div class="cart-header">
+        <div class="wrap-arrow">
+            <a routerLink="/shop" class="continue">Continue Shopping</a>
+        </div>
+
+        <button type="button" class="cart-checkout" routerLink="/checkout" (click)='checkOut()'>
+            <div class="icon-checkout"></div>
+            <span>CheckOut</span>
+        </button>
+    </div>
+
+
+    <table class="table mt-3 table-cart">
+        <thead>
+            <tr class="thead">
+                <th>My Cart({{cartItems.length}})</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tbody" *ngFor="let item of cartItems; let total">
+                <td>
+                    <div class="wrap-product">
+                        <img src="{{item.image}}" alt="" class="image">
+                        <div class="info">
+                            <p class="name">{{item.name}}</p>
+                            <p class="size">Size: {{item.size}} </p>
+                            <p class="color">Color: {{item.color}} </p>
+                            <p class="remove" (click)="removeItem(item)">Remove</p>
+                        </div>
+                    </div>
+                </td>
+                <th>{{item.price | currency: "USD"}}</th>
+                <th>
+                    <button class="quantity-arrow-minus" (click)="counterMinus(item.id)"> - </button>
+                    <input type="number" disabled value="{{item.quantity}}" (change)="sumCount(item)" />
+                    <button class="quantity-arrow-plus" (click)="counterPlus(item.id)"> + </button>
+                </th>
+
+                <th>{{ item.price*item.quantity | currency: "USD"}}</th>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+    <div class="end-cart">
+        <div class="shipping">
+
+            <div class="wrap-text">
+                <p>Subtotal</p>
+                <p>{{total | currency: "USD"}}</p>
+            </div>
+            <div class="wrap-text">
+                <p>Shipping</p>
+                <p>FREE</p>
+            </div>
+            <div class="line"></div>
+            <div class="wrap-text">
+                <p>Total</p>
+                <p>{{total | currency: "USD"}}</p>
+            </div>
+            <button type="button" class="cart-checkout cart-button" (click)='checkOut()' routerLink="/checkout">
+                <div class="icon-checkout"></div>
+                <span>CheckOut</span>
+            </button>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="empty" *ngIf="checkEmpty">
+    <div style="text-align: center;">
+        <p class="text-empty">CART IS EMPTY</p>
+        <p><a routerLink="/shop">Continue Shopping</a></p>
+    </div>
+
+</div>

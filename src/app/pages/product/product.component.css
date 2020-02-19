@@ -1,0 +1,290 @@
+.nav {
+  width: 100%;
+  height: 100px;
+  background-color: #e8e6e6;
+}
+
+.add{
+  width: 150px;
+  height: 50px;
+  border-radius: 7px;
+  background-color: #ea5823;
+  position: absolute;
+  right: 15px;
+  top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1000ms;
+
+}
+
+
+.text-nav {
+  color: #424242;
+  font-size: 21px;
+}
+
+.text-nav + span {
+  color: #a3a3a3;
+  font-size: 21px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.prev-next {
+  color: #424242;
+  font-size: 18px;
+}
+
+.wrap-nav {
+  width: 850px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+#product-details {
+  width: 100%;
+  height: 900px;
+  background-color: #e8e6e6;
+  padding-bottom: 50px;
+}
+
+.wrap {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 850px;
+}
+.image {
+  width: 400px;
+  height: 400px;
+  /* background-color: black; */
+  border: 1px solid #c7c6c6;
+}
+
+.info {
+  width: 400px;
+  height: 400px;
+  /* background-color: blueviolet; */
+}
+
+.product-name {
+  color: #ea5823;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.product-price {
+  color: #a8a8a8;
+  font-size: 20px;
+}
+
+.label {
+  color: #c7c6c6;
+}
+
+.select {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  position: relative;
+}
+
+.select::after {
+  content: "";
+  display: block;
+}
+
+.select select {
+  width: 400px;
+  height: 50px;
+  background: white;
+  border: 1px solid #c7c6c6;
+  appearance: none;
+  font-family: inherit;
+  font-size: 20px;
+  color: #a8a8a8;
+  padding: 7px;
+  display: inline-block;
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #c7c6c6;
+}
+
+.wrap-color {
+  display: flex;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+input {
+  background: white;
+  height: 50px;
+  border: 1px solid #c7c6c6;
+  padding: 7px;
+  color: #a8a8a8;
+}
+
+.button {
+  width: 400px;
+  height: 50px;
+  background: none;
+  border: 2px solid #ea5823;
+  color: #ea5823;
+  margin-top: 16px;
+}
+
+.line {
+  width: 400px;
+  height: 1px;
+  background-color: #a3a3a3;
+}
+
+.title-info {
+  color: #666666;
+  font-size: 18px;
+  margin-top: 16px;
+  font-weight: 300;
+}
+
+.title-info + p {
+  color: #666666;
+  font-weight: 300;
+
+}
+
+.plus-text {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plus {
+  width: 18px;
+  height: 18px;
+  background-image: url(/assets/icons/plus_icon-.png);
+  background-size: 18px 18px;
+}
+
+.minus {
+  width: 18px;
+  height: 18px;
+  background-image: url(/assets/icons/minus_icon.png);
+  background-size: 18px 18px;
+}
+
+.block {
+  width: 85px;
+  height: 35px;
+  background-color: #ed5f4b;
+  border-radius: 7px;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: -100px;
+  /* left: -95px; */
+  /* top: 42px; */
+}
+.block::after,
+.block::before {
+  content: "";
+  position: absolute;
+  background: #ed5f4b;
+  left: 77px;
+  bottom: 11px;
+  width: 12px;
+  height: 12px;
+  box-shadow: 0 0 7px #000;
+  z-index: -1;
+  transform: rotate(45deg);
+}
+.block::before {
+  z-index: 1;
+  box-shadow: none;
+}
+
+
+
+
+
+
+
+
+.check-color{
+  width: 24px;
+  height: 24px;
+  border: 1px solid #666666;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: absolute;
+}
+
+.wrap-color-check{
+  position: relative;
+}
+
+.plus-text + p{
+  color: #666666;
+}
+
+.wrap-small-img img{
+  border: 1px solid #c7c6c6;
+  width: 70px;
+  margin-top: 20px;
+  margin-right: 20px;
+
+  
+}
+.wrap-small-img img:hover{
+  cursor: pointer;
+}
+
+ul{
+  display: flex;
+}
+li{
+  list-style: none;
+}
+li span{
+  width: 20px;
+  height: 20px;
+  background-color: coral;
+  display: block;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.text-descrsption{
+  width: 400px;
+}
+
+select:hover{
+  border: 1px solid black;
+}
+
+.check-size{
+  color: white;
+  background-color: #ed5f4b;
+  width: 80px;
+  height: 35px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border-radius: 8px;
+  left: -90px;
+}
